@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
   /* config options here */
   eslint: {
     // Warning: This allows production builds to successfully complete even if

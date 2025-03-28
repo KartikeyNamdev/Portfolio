@@ -66,10 +66,10 @@ export const gridItems = [
     id: 6,
     title: "Do you want to start a project together?",
     description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    imgClassName: "",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-1 ",
+    imgClassName: "h-68 w-116 object-none",
     titleClassName: "justify-center md:max-w-full max-w-60 text-center",
-    img: "",
+    img: "/gradient.jpg",
     spareImg: "",
   },
 ];
