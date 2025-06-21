@@ -2,14 +2,8 @@ import { CardContainer, CardBody, CardItem } from "./projectCard";
 import Image from "next/image";
 export default function Home() {
   return (
-    <div
-      className="grid grid-cols-2 items-center h-screen 
-  "
-    >
-      <div
-        className="text-center
-"
-      >
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 py-8">
+      <div>
         <CardContainer
           link={new URL("https://medium-delta-rouge.vercel.app/")}
           className="inter-var"
@@ -38,7 +32,7 @@ export default function Home() {
                 src="/medium.png"
                 height="1000"
                 width="1000"
-                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                className="h-60 w-full object-contain rounded-xl group-hover/card:shadow-xl sm:"
                 alt="thumbnail"
               />
             </CardItem>
@@ -93,7 +87,7 @@ export default function Home() {
                 src="/referral.png"
                 height="1000"
                 width="1000"
-                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                className="h-60 w-full object-contain rounded-xl group-hover/card:shadow-xl"
                 alt="thumbnail"
               />
             </CardItem>
@@ -146,7 +140,7 @@ export default function Home() {
                 src="/merchant.png"
                 height="1000"
                 width="1000"
-                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                className="h-60 w-full object-contain rounded-xl group-hover/card:shadow-xl"
                 alt="thumbnail"
               />
             </CardItem>
@@ -198,7 +192,7 @@ export default function Home() {
                 src="/skillbridge.png"
                 height="1000"
                 width="1000"
-                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                className="h-60 w-full object-contain rounded-xl group-hover/card:shadow-xl"
                 alt="thumbnail"
               />
             </CardItem>

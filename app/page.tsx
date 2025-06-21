@@ -42,9 +42,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="achievements" className="">
-        <div className="pt-62 bg-black">
-          <div className="p-28 pl-40 justify-center">
+      <section id="achievements" className="center">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold font-mono py-12">
+              Achievements and Milestones
+            </h1>
+          </div>
+          <div className="p-16">
             <Grid />
           </div>
         </div>

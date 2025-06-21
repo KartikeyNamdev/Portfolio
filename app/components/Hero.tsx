@@ -59,12 +59,12 @@ export function SparklesPreview() {
       <div className="grid grid-cols-2 gap-4 w-full max-w-8xl mx-auto px-4 relative z-20">
         {/* Left column */}
         <div className="flex flex-col justify-center">
-          <h1 className="md:text-7xl text-3xl lg:text-6xl text-white">
+          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl text-white font-bold font-mono">
             KARTIKEY NAMDEV
           </h1>
           <div className="mt-4">
             <FlipWords
-              className="text-xl"
+              className="text-base sm:text-xl md:text-3xl lg:text-4xl "
               words={[
                 "FULL STACK DEVELOPER",
                 "BACKEND DEVELOPER",
