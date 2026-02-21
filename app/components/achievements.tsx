@@ -5,8 +5,8 @@ import { BentoGrid, BentoGridItem } from "./BentoGrid";
 
 const Grid = () => {
   return (
-    <div className="container mx-auto relative z-10 ">
-      <BentoGrid className="w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <div className="container mx-auto relative z-10 flex justify-center w-full">
+      <BentoGrid className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 gap-6">
         {gridItems.map((item, index) => (
           <BentoGridItem
             href={item.href}
@@ -30,7 +30,7 @@ const Grid = () => {
               `}
             titleClassName={`
                 ${item.titleClassName} 
-                group-hover:text-blue-400 
+                group-hover:text-blue-600 
                 transition-colors
               `}
             spareImg={item.spareImg}

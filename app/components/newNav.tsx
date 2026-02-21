@@ -58,17 +58,11 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          // change rounded-full to rounded-lg
-          // remove dark:border-white/[0.2] dark:bg-black bg-white border-transparent
-          // change  pr-2 pl-8 py-2 to px-10 py-5
-          "flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4",
-          className
+          "flex max-w-fit md:min-w-[60vw] lg:min-w-fit fixed z-[5000] top-4 md:top-8 inset-x-0 mx-auto px-4 md:px-12 py-3 md:py-4 rounded-xl md:rounded-2xl border border-slate-200/50 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] items-center justify-center space-x-3 md:space-x-8 bg-white/80 backdrop-blur-xl",
+          className,
         )}
         style={{
-          backdropFilter: "blur(16px) saturate(180%)",
-          // backgroundColor: "rgba(10, 10, 10, 0.75)",
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.125)",
+          backdropFilter: "blur(20px) saturate(180%)",
         }}
       >
         {navItems.map((navItem: any, idx: number) => (
@@ -76,13 +70,13 @@ export const FloatingNav = ({
             key={`link=${idx}`}
             href={navItem.link}
             className={cn(
-              "relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "relative items-center flex space-x-1 text-slate-600 hover:text-blue-600 transition-colors duration-200",
             )}
           >
             <span className="block sm:hidden">{navItem.icon}</span>
-            {/* add !cursor-pointer */}
-            {/* remove hidden sm:block for the mobile responsive */}
-            <span className=" text-sm !cursor-pointer">{navItem.name}</span>
+            <span className="text-[10px] md:text-sm font-semibold tracking-tight !cursor-pointer uppercase">
+              {navItem.name}
+            </span>
           </Link>
         ))}
         {/* remove this login btn */}

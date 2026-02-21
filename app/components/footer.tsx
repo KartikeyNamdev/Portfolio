@@ -1,40 +1,62 @@
 import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
-import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
+import PersonalAvatar from "./PersonalAvatar";
 
 const Footer = () => {
   return (
     <footer
-      className="absolute w-full min-h-screen flex items-center justify-center "
+      className="relative w-full py-20 flex flex-col items-center justify-center overflow-hidden"
       id="contact"
     >
-      {/* background grid */}
-      <BackgroundBeamsWithCollision>
-        <div className="relative w-full max-w-8xl mx-auto px-4">
-          <div className="flex flex-col items-center justify-center text-center">
-            <h1 className="mb-4  lg:text-2xl font-bold text-white">
-              Ready to take <span className="text-purple">your</span> digital
-              presence to the next level?
-            </h1>
-            <p className="text-white-200 max-w-xl mx-auto mb-10 text-center">
-              Reach out to me today and let&apos;s discuss how I can help you
-              achieve your goals.
-            </p>
-            <a href="mailto:kartikeynamdev2003@gmail.com">
-              <MagicButton
-                title="Let's get in touch"
-                icon={<FaLocationArrow />}
-                position="right"
-              />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
+        <div className="flex flex-col items-center justify-center text-center">
+          <div className="mb-10">
+            <PersonalAvatar />
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            Ready to take <span className="text-blue-600">your</span> digital
+            architecture to the next level?
+          </h1>
+          <p className="text-slate-600 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
+            Reach out to me today and let&apos;s discuss how I can help you
+            build scalable, high-performance systems.
+          </p>
+          <a href="mailto:kartikeynamdev2003@gmail.com">
+            <MagicButton
+              title="Let's build together"
+              icon={<FaLocationArrow />}
+              position="right"
+              otherClasses="bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xl shadow-blue-200"
+            />
+          </a>
+        </div>
+
+        <div className="mt-24 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm font-medium text-slate-500">
+            Copyright © 2026 Kartikey Namdev
+          </p>
+          <div className="flex items-center gap-6">
+            <a
+              href="https://github.com/kartikeyNamdev"
+              className="text-slate-400 hover:text-blue-600 transition-colors"
+            >
+              Github
+            </a>
+            <a
+              href="https://x.com/_KartikeyNamdev"
+              className="text-slate-400 hover:text-blue-600 transition-colors"
+            >
+              Twitter
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kartikey-namdev/"
+              className="text-slate-400 hover:text-blue-600 transition-colors"
+            >
+              LinkedIn
             </a>
           </div>
-
-          {/* Copyright in bottom right corner */}
         </div>
-        <p className="absolute bottom-4 right-4 text-sm font-light opacity-70">
-          Copyright © 2025 Kartikey Namdev
-        </p>
-      </BackgroundBeamsWithCollision>
+      </div>
     </footer>
   );
 };

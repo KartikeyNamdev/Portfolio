@@ -1,49 +1,38 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
   OrbitControls,
   Environment,
   PerspectiveCamera,
+  ContactShadows,
 } from "@react-three/drei";
 import * as THREE from "three";
-interface avatar {
+
+interface AvatarProps {
   modelPath: string;
-  scale: number;
-  position?: number[];
-  rotation?: number[];
+  scale?: number;
+  position?: [number, number, number];
 }
+
 function AvatarModel({
   modelPath,
-  scale = 1,
-  position = [0, -1, 0], // Adjusted position to center the model vertically
-  rotation = [0, 0, 0],
-}: avatar) {
-  const modelRef = useRef<THREE.Mesh | null>(null);
+  scale = 3.5,
+  position = [0, -3.2, 0],
+}: AvatarProps) {
+  const modelRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(modelPath);
 
-  // Auto-rotate effect (can be disabled if needed)
-  useFrame(() => {
+  useFrame((state) => {
     if (modelRef.current) {
-      // Slow down the rotation for better viewing
-      modelRef.current.rotation.y += 0.02;
+      modelRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.4) * 0.1;
+      modelRef.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime * 1.5) * 0.05;
     }
   });
-
-  useEffect(() => {
-    // Center the model on load
-    if (scene) {
-      // Optional: If you need to adjust materials for better visibility
-      scene.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
-    }
-  }, [scene]);
 
   return (
     <primitive
@@ -51,50 +40,57 @@ function AvatarModel({
       object={scene}
       scale={scale}
       position={position}
-      rotation={rotation}
     />
   );
 }
 
-export default function AvatarDisplay({ modelPath = "/your-avatar.glb" }) {
+function LoadingBox() {
   return (
-    <div className="w-full h-96 md:h-[500px] relative">
-      {/* Controls info overlay */}
-      <div className="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-10">
-        Drag to rotate • Scroll to zoom • Shift + drag to pan
-      </div>
-      <Canvas shadows>
-        {/* Adjusted camera position to see the full model including face */}
-        <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={80} />
+    <mesh position={[0, 0, 0]}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="#3B82F6" wireframe />
+    </mesh>
+  );
+}
 
-        {/* Better lighting setup */}
-        <ambientLight intensity={0.8} />
+export default function AvatarDisplay({ modelPath = "/me2.glb" }) {
+  return (
+    <div className="w-full h-[400px] md:h-[600px] relative mt-[-20px] outline-none">
+      <Canvas
+        shadows
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 4.5], fov: 50 }}
+        style={{ background: "transparent" }}
+      >
+        <ambientLight intensity={1.5} />
         <spotLight
-          position={[5, 10, 7]}
-          angle={0.3}
+          position={[10, 15, 10]}
+          angle={0.15}
           penumbra={1}
-          intensity={1.5}
+          intensity={2}
           castShadow
         />
-        <pointLight position={[-10, 0, -10]} intensity={0.5} />
+        <pointLight position={[-10, -10, -10]} intensity={1} color="#3B82F6" />
+        <PerspectiveCamera makeDefault position={[0, 0, 4.5]} />
 
-        {/* Front light to illuminate the face */}
-        <pointLight position={[0, 2, 5]} intensity={0.8} />
-
-        <AvatarModel modelPath={modelPath} scale={2} />
+        <Suspense fallback={<LoadingBox />}>
+          <AvatarModel modelPath={modelPath} />
+          <ContactShadows
+            opacity={0.4}
+            scale={10}
+            blur={2.4}
+            far={4.5}
+            color="#000000"
+          />
+        </Suspense>
 
         <OrbitControls
-          enableZoom={true}
-          enablePan={true}
-          enableRotate={true}
-          minDistance={2}
-          maxDistance={10}
-          target={[0, 0, 0]} // Focus point (center of the model)
-          enableDamping={true}
-          dampingFactor={0.05}
+          enableZoom={false}
+          enablePan={false}
+          minPolarAngle={Math.PI / 2.5}
+          maxPolarAngle={Math.PI / 2}
         />
-
-        <Environment preset="city" />
+        <Environment preset="studio" />
       </Canvas>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import {
   Cloud,
   fetchSimpleIcons,
@@ -67,27 +67,34 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 
 export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
-  const [isClient, setIsClient] = useState(false); // NEW
+  const [isClient, setIsClient] = useState(false);
 
   const { theme } = useTheme();
 
   useEffect(() => {
     fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
-    setIsClient(true); // Ensure this runs only on the client
+    setIsClient(true);
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
     if (!data) return null;
 
     return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "light")
+      renderCustomIcon(icon, theme || "light"),
     );
   }, [data, theme]);
+
   if (!isClient) return null;
 
   return (
-    <Cloud {...cloudProps}>
-      <>{renderedIcons}</>
-    </Cloud>
+    <div className="w-full flex justify-center items-center h-[400px]">
+      {data ? (
+        <Cloud {...cloudProps}>
+          <>{renderedIcons}</>
+        </Cloud>
+      ) : (
+        <div className="w-32 h-32 border-2 border-dashed border-slate-200 rounded-full animate-spin" />
+      )}
+    </div>
   );
 }

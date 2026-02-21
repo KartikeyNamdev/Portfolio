@@ -22,12 +22,11 @@ export const CardContainer = ({
   children,
   className,
   containerClassName,
-  link,
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
-  link: URL;
+  link?: URL | string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
@@ -52,35 +51,33 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
   };
   return (
-    <Link href={link}>
-      <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
+    <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
+      <div
+        className={cn(
+          "py-10 md:py-20 flex items-center justify-center",
+          containerClassName,
+        )}
+        style={{
+          perspective: "1000px",
+        }}
+      >
         <div
+          ref={containerRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
           className={cn(
-            "py-20 flex items-center justify-center",
-            containerClassName
+            "flex items-center justify-center relative transition-all duration-200 ease-linear",
+            className,
           )}
           style={{
-            perspective: "1000px",
+            transformStyle: "preserve-3d",
           }}
         >
-          <div
-            ref={containerRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className={cn(
-              "flex items-center justify-center relative transition-all duration-200 ease-linear",
-              className
-            )}
-            style={{
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {children}
-          </div>
+          {children}
         </div>
-      </MouseEnterContext.Provider>
-    </Link>
+      </div>
+    </MouseEnterContext.Provider>
   );
 };
 
@@ -95,7 +92,7 @@ export const CardBody = ({
     <div
       className={cn(
         "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
-        className
+        className,
       )}
     >
       {children}
@@ -130,7 +127,7 @@ export const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
       rotateZ = 0,
       ...rest
     },
-    ref
+    ref,
   ): React.JSX.Element => {
     const innerRef = useRef<HTMLDivElement>(null);
     const [isMouseEntered] = useMouseEnter();
@@ -157,7 +154,7 @@ export const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
     // Safely handle children
     //@ts-ignore
     const safeChildren = React.Children.toArray(children).filter(
-      (child) => child !== null && child !== undefined
+      (child) => child !== null && child !== undefined,
     );
 
     // If it's a string (HTML element), use createElement
@@ -169,7 +166,7 @@ export const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
           className: combinedClassName,
           ...rest,
         },
-        ...safeChildren
+        ...safeChildren,
       );
     }
     return (
@@ -191,7 +188,7 @@ export const CardItem = forwardRef<HTMLDivElement, CardItemProps>(
     //     {safeChildren}
     //   </Component>
     // );
-  }
+  },
 );
 
 CardItem.displayName = "CardItem";
