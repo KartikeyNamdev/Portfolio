@@ -18,7 +18,7 @@ export default function PersonalAvatar() {
           <img
             src="/me.png"
             alt="Kartikey Namdev"
-            className="w-full h-full object-top grayscale group-hover:grayscale-0 transition-all duration-500 scale-110"
+            className="w-full h-full object-cover  group-hover:grayscale-0 transition-all duration-500 scale-110"
           />
         </div>
 

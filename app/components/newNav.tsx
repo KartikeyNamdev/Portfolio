@@ -1,13 +1,43 @@
 "use client";
-import React, { JSX, useState } from "react";
+import React, { useState } from "react";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from "framer-motion";
+} from "motion/react";
 import Link from "next/link";
 import { cn } from "../lib/utils";
+import {
+  IconUser,
+  IconCode,
+  IconBriefcase,
+  IconAward,
+  IconBook,
+  IconMessage,
+} from "@tabler/icons-react";
+
+/**
+ * Maps section names to appropriate Tabler icons
+ */
+const getIcon = (name: string) => {
+  switch (name.toLowerCase()) {
+    case "about":
+      return <IconUser className="w-4 h-4" />;
+    case "skills":
+      return <IconCode className="w-4 h-4" />;
+    case "projects":
+      return <IconBriefcase className="w-4 h-4" />;
+    case "learning":
+      return <IconBook className="w-4 h-4" />;
+    case "achievements":
+      return <IconAward className="w-4 h-4" />;
+    case "principles":
+      return <IconMessage className="w-4 h-4" />;
+    default:
+      return null;
+  }
+};
 
 export const FloatingNav = ({
   navItems,
@@ -16,22 +46,18 @@ export const FloatingNav = ({
   navItems: {
     name: string;
     link: string;
-    icon?: JSX.Element;
+    icon?: React.ReactNode;
   }[];
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-
-  // set true for the initial state so that nav bar is visible in the hero section
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      let direction = current! - (scrollYProgress.getPrevious() ?? 0);
 
       if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
         setVisible(true);
       } else {
         if (direction < 0) {
@@ -58,32 +84,24 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex max-w-fit md:min-w-[60vw] lg:min-w-fit fixed z-[5000] top-4 md:top-8 inset-x-0 mx-auto px-4 md:px-12 py-3 md:py-4 rounded-xl md:rounded-2xl border border-slate-200/50 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] items-center justify-center space-x-3 md:space-x-8 bg-white/80 backdrop-blur-xl",
+          "flex max-w-[95vw] md:max-w-fit md:min-w-[60vw] lg:min-w-fit fixed z-[5000] top-4 md:top-8 inset-x-0 mx-auto px-3 md:px-10 py-2.5 md:py-4 rounded-2xl border border-slate-200/50 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] items-center justify-center space-x-1 md:space-x-8 bg-white/70 backdrop-blur-2xl",
           className,
         )}
-        style={{
-          backdropFilter: "blur(20px) saturate(180%)",
-        }}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem, idx) => (
           <Link
             key={`link=${idx}`}
             href={navItem.link}
             className={cn(
-              "relative items-center flex space-x-1 text-slate-600 hover:text-blue-600 transition-colors duration-200",
+              "relative items-center flex flex-col md:flex-row space-y-0.5 md:space-y-0 md:space-x-1.5 text-slate-500 hover:text-blue-600 transition-all duration-200 px-2 md:px-0 py-1",
             )}
           >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="text-[10px] md:text-sm font-semibold tracking-tight !cursor-pointer uppercase">
+            <span className="block">{getIcon(navItem.name)}</span>
+            <span className="text-[9px] md:text-xs font-bold tracking-tight cursor-pointer uppercase whitespace-nowrap">
               {navItem.name}
             </span>
           </Link>
         ))}
-        {/* remove this login btn */}
-        {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button> */}
       </motion.div>
     </AnimatePresence>
   );
