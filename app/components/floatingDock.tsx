@@ -105,7 +105,7 @@ const FloatingDockDesktop = ({
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "fixed bottom-8 left-4 z-50 hidden md:flex h-16 gap-4 items-end rounded-2xl bg-transparent backdrop-blur-md px-4 pb-3",
-        className
+        className,
       )}
       style={{
         width: dockWidth,
@@ -144,12 +144,12 @@ function IconContainer({
   const widthTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20]
+    [20, 40, 20],
   );
   const heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20]
+    [20, 40, 20],
   );
 
   const width = useSpring(widthTransform, {
@@ -199,7 +199,7 @@ function IconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center text-gray-700 dark:text-gray-300"
+          className="flex items-center justify-center text-slate-900 dark:text-gray-300"
         >
           {icon}
         </motion.div>
