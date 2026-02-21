@@ -8,45 +8,28 @@ export async function POST(request: Request): Promise<NextResponse> {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (
-        pathname,
-        /* clientPayload */
-      ) => {
-        // Generate a Python Shell-style token or just handle authentication
-        // In a real app, you'd check the user's session here.
+      onBeforeGenerateToken: async (pathname) => {
         return {
           allowedContentTypes: [
             "image/jpeg",
             "image/png",
             "image/gif",
             "video/mp4",
+            "video/quicktime",
+            "video/webm",
           ],
-          tokenPayload: JSON.stringify({
-            // optional, sent to your server on upload completion
-            userId: "user-id",
-          }),
+          tokenPayload: JSON.stringify({ userId: "user-id" }),
         };
       },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
-        // Get notified of client upload completion
-        // 🚀 This will run on your server
-        console.log("blob upload completed", blob, tokenPayload);
-
-        try {
-          //   // Run any logic after the file has been uploaded
-          //   // const { userId } = JSON.parse(tokenPayload);
-          //   // await db.update({ avatar: blob.url, userId });
-        } catch (error) {
-          throw new Error("Could not update user");
-        }
-      },
+      // onUploadCompleted is removed to avoid callbackUrl errors on localhost/netlify
     });
 
     return NextResponse.json(jsonResponse);
   } catch (error) {
+    console.error("Vercel Blob Handshake Error:", error);
     return NextResponse.json(
       { error: (error as Error).message },
-      { status: 400 }, // The client will also get this error
+      { status: 400 },
     );
   }
 }

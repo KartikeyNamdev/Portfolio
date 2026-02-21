@@ -35,8 +35,8 @@ const iconMap: Record<string, string | null> = {
   nestjs: "nestjs/nestjs-original.svg",
   fastapi: "fastapi/fastapi-original.svg",
 
-  solana: "solana/solana-original.svg",
-  ethereum: "ethereum/ethereum-original.svg",
+  solana: "https://cryptologos.cc/logos/solana-sol-logo.svg?v=040",
+  ethereum: "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=040",
 };
 
 /* Lucide fallback icons */
@@ -97,7 +97,7 @@ export default function TechStack() {
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <LazyVideo
-          src="/coder.mp4"
+          src="https://fdu82zekl2zzukop.public.blob.vercel-storage.com/coder.mp4"
           className="w-full h-full object-cover opacity-70 brightness-90 contrast-110"
         />
         <div className="absolute inset-0 bg-[#020205]/55" />
@@ -147,7 +147,11 @@ export default function TechStack() {
                   <div className="w-8 h-8 md:w-10 md:h-10 mb-2 flex items-center justify-center">
                     {iconMap[slug] ? (
                       <img
-                        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconMap[slug]}`}
+                        src={
+                          iconMap[slug]?.startsWith("http")
+                            ? iconMap[slug]
+                            : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconMap[slug]}`
+                        }
                         alt={slug}
                         className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                         loading="lazy"

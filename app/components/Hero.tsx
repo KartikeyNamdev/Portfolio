@@ -100,7 +100,7 @@ export function SparklesPreview() {
 
             <div className="relative aspect-[4/5] w-full rounded-[30px] overflow-hidden border border-white/40 shadow-2xl backdrop-blur-sm bg-white/5 shadow-white/10">
               <LazyVideo
-                src="/DollarVideo.mp4"
+                src="https://fdu82zekl2zzukop.public.blob.vercel-storage.com/DollarVideo.mp4"
                 className="w-full h-full scale-105 group-hover:scale-100 transition-transform duration-[2s] ease-out"
               />
 

@@ -26,15 +26,17 @@ export default function VercelBlobUpload() {
           const file = inputFileRef.current.files[0];
 
           try {
+            console.log("Starting upload for:", file.name);
             const newBlob = await upload(file.name, file, {
               access: "public",
               handleUploadUrl: "/api/upload",
             });
 
+            console.log("Upload success:", newBlob);
             setBlob(newBlob);
-          } catch (error) {
-            console.error("Upload failed:", error);
-            alert("Upload failed. Did you set BLOB_READ_WRITE_TOKEN?");
+          } catch (error: any) {
+            console.error("Upload failed details:", error);
+            alert(`Upload failed: ${error.message || "Unknown error"}`);
           } finally {
             setLoading(false);
           }
