@@ -16,9 +16,9 @@ export default function PersonalAvatar() {
         {/* Placeholder for Memoji/Portrait */}
         <div className="w-full h-full bg-slate-100 flex items-center justify-center overflow-hidden">
           <img
-            src="/me.jpeg"
+            src="/me.png"
             alt="Kartikey Namdev"
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110"
+            className="w-full h-full object-top grayscale group-hover:grayscale-0 transition-all duration-500 scale-110"
           />
         </div>
 
