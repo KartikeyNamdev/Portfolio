@@ -1,5 +1,7 @@
 "use client";
 import AllProjects from "./components/allProjects";
+import SmartContracts from "./components/SmartContracts";
+import Resumes from "./components/Resumes";
 import { SparklesPreview } from "./components/Hero";
 import { FloatingNav } from "./components/newNav";
 import TechStack from "./components/TechStack";
@@ -58,6 +60,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Smart Contracts Section */}
+      <section id="smart-contracts" className="py-32 bg-slate-50/50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center mb-20 md:mb-32">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-6xl md:text-8xl lg:text-9xl font-serif text-slate-900 tracking-tighter mb-4"
+            >
+              Smart{" "}
+              <span className="italic font-light text-emerald-600">
+                Contracts
+              </span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="text-slate-400 font-sans uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold"
+            >
+              Secure, Auditable & High-Performance On-Chain Programs
+            </motion.p>
+          </div>
+          <SmartContracts />
+        </div>
+      </section>
+
       {/* Achievements Section */}
       <section id="achievements" className="py-32 relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
@@ -79,12 +109,13 @@ export default function Home() {
       {/* Learning Roadmap - Redesigned Section Heading */}
       <section id="learning" className="py-32">
         <LearningRoadmap />
+        <Resumes />
       </section>
 
       {/* Engineering Principles */}
-      <section id="principles">
+      {/* <section id="principles">
         <TechnicalPrinciples />
-      </section>
+      </section> */}
 
       <div className="bg-white border-t border-slate-100">
         <Footer />

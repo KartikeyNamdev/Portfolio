@@ -37,18 +37,14 @@ export default function AllProjects() {
 
           {/* Text Side */}
           <div className="w-full md:w-2/5 flex flex-col items-start text-left">
-            <div className="flex gap-2 mb-6">
-              {project.iconLists.map((icon, idx) => (
-                <div
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.techStack?.map((tech, idx) => (
+                <span
                   key={idx}
-                  className="w-8 h-8 rounded-full bg-white border border-slate-100 p-1.5 shadow-sm overflow-hidden flex items-center justify-center"
+                  className="px-3 py-1 text-xs font-bold text-blue-700 bg-blue-100/80 border border-blue-200 rounded-full shadow-sm"
                 >
-                  <img
-                    src={icon}
-                    alt="tech"
-                    className="w-full h-full grayscale group-hover:grayscale-0 transition-all"
-                  />
-                </div>
+                  {tech}
+                </span>
               ))}
             </div>
 

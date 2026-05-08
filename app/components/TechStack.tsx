@@ -125,48 +125,40 @@ export default function TechStack() {
           <div className="mt-4 w-32 h-1 bg-blue-500 rounded-full" />
         </div>
 
-        {/* Grid */}
-        <div className="flex flex-col items-center gap-6 md:gap-10">
-          {rows.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              className="flex flex-wrap gap-4 md:gap-8 justify-center"
+        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 max-w-5xl mx-auto">
+          {skills.map((slug, index) => (
+            <motion.div
+              key={slug}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ scale: 1.1, y: -10 }}
+              className="group relative w-16 h-20 md:w-24 md:h-28
+                bg-white/[0.04] border border-white/10 rounded-xl md:rounded-2xl
+                flex flex-col items-center justify-center cursor-pointer
+                transition-all hover:border-blue-500/50 hover:bg-white/20"
             >
-              {row.map((slug, index) => (
-                <motion.div
-                  key={slug}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: rowIndex * 0.05 + index * 0.02 }}
-                  whileHover={{ scale: 1.1, y: -10 }}
-                  className="group relative w-16 h-20 md:w-24 md:h-28
-                    bg-white/[0.04] border border-white/10 rounded-xl md:rounded-2xl
-                    flex flex-col items-center justify-center cursor-pointer
-                    transition-all hover:border-blue-500/50 hover:bg-white/20"
-                >
-                  <div className="w-8 h-8 md:w-10 md:h-10 mb-2 flex items-center justify-center">
-                    {iconMap[slug] ? (
-                      <img
-                        src={
-                          iconMap[slug]?.startsWith("http")
-                            ? iconMap[slug]
-                            : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconMap[slug]}`
-                        }
-                        alt={slug}
-                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
-                        loading="lazy"
-                      />
-                    ) : (
-                      fallbackIcons[slug]
-                    )}
-                  </div>
+              <div className="w-8 h-8 md:w-10 md:h-10 mb-2 flex items-center justify-center">
+                {iconMap[slug] ? (
+                  <img
+                    src={
+                      iconMap[slug]?.startsWith("http")
+                        ? iconMap[slug]
+                        : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconMap[slug]}`
+                    }
+                    alt={slug}
+                    className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                  />
+                ) : (
+                  fallbackIcons[slug]
+                )}
+              </div>
 
-                  <span className="text-[8px] md:text-[9px] font-bold text-white/80 group-hover:text-white uppercase tracking-widest">
-                    {slug}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+              <span className="text-[8px] md:text-[9px] font-bold text-white/80 group-hover:text-white uppercase tracking-widest text-center px-1">
+                {slug}
+              </span>
+            </motion.div>
           ))}
         </div>
       </div>

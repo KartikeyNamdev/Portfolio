@@ -4,7 +4,7 @@ export const navItems = [
   { name: "Projects", link: "#projects" },
   { name: "Learning", link: "#learning" },
   { name: "Achievements", link: "#achievements" },
-  { name: "Principles", link: "#principles" },
+  { name: "Contracts", link: "#smart-contracts" },
 ];
 
 export const curriculum = [
@@ -99,18 +99,18 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "Solanix — Advanced DeFi Suite (WIP)",
-    des: "Currently building a sophisticated Solana-based project featuring Escrow, Vaults, and Staking logic. Implementing complex on-chain state management and secure asset handling.",
+    title: "Solvault — Solana Developer Toolbox",
+    des: "Built a full-stack developer sandbox for Solana blockchain interactions with non-custodial wallet-based transactions, SOL transfers, airdrops, and SPL token minting using @solana/web3.js and ATA derivation. Integrated Wallet Adapter for seamless wallet connection (Phantom, Backpack)",
     img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/SolanaCoin.mp4",
-    iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
-    link: "https://github.com/kartikeyNamdev",
+    techStack: ["Next.js", "TypeScript", "Solana", "Anchor"],
+    link: "https://github.com/KartikeyNamdev/Staking_Escrow_FE",
   },
   // {
   //   id: 2,
   //   title: "Exchange — Matching Engine & Trading System",
   //   des: "Implemented a deterministic bid/ask order book using TypeScript, Redis Pub/Sub, and WebSockets.",
   //   img: "/BitcoinVideo2.mp4",
-  //   iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
+  //   techStack: ["Next.js", "TypeScript", "Redis", "WebSockets"],
   //   link: "https://github.com/KartikeyNamdev/Exchange",
   // },
   {
@@ -118,7 +118,7 @@ export const projects = [
     title: "Merchant Paytm — Digital Wallet",
     des: "Built ACID-safe wallet transactions with P2P transfers and bank webhook processing.",
     img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/ShoppingToken.mp4",
-    iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
+    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
     link: "https://roaring-starship-fbf52b.netlify.app/",
   },
   {
@@ -126,7 +126,7 @@ export const projects = [
     title: "CMS — EV Charging Content Management System",
     des: "Scalable platform with real-time data hooks, analytics, and geospatial map integration.",
     img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/ev.mp4",
-    iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
+    techStack: ["React", "Node.js", "WebSockets", "MongoDB"],
     link: "https://cms-snowy-beta.vercel.app",
   },
   {
@@ -134,7 +134,7 @@ export const projects = [
     title: "Chess Town — Online Chess Platform",
     des: "A real-time online chess platform built with React, Node.js, and WebSockets. Features include real-time board updates, move validation, and game state management.",
     img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/ChessVideo.mp4",
-    iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
+    techStack: ["React", "Node.js", "WebSockets", "Redis"],
     link: "https://github.com/KartikeyNamdev/ChessTown",
   },
   {
@@ -142,8 +142,30 @@ export const projects = [
     title: "Video Chat — WebRTC based Video Calling Service",
     des: "A high-performance peer-to-peer communication platform built with WebRTC and Socket.io. Features low-latency video/audio streaming, secure signaling architecture, and real-time connection handling.",
     img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/VideoCalling.mp4",
-    iconLists: ["/next.svg", "/ts.svg", "/vercel.svg"],
+    techStack: ["WebRTC", "Socket.io", "React", "Node.js"],
     link: "https://github.com/KartikeyNamdev/WebRTC_Project",
+  },
+];
+export const smartContracts = [
+  {
+    id: 1,
+    title: "Voting Solana Program",
+    des: "A decentralized voting smart contract on Solana. Built with Anchor, featuring secure vote casting and state management.",
+    programId: "6FvRHAB6UQuuh66cfRwqizEJFzvjhUEkaT9JeD1qK6QN",
+    network: "Devnet",
+    img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/voting_video.mp4",
+    techStack: ["Rust", "Anchor", "Solana", "Web3.js"],
+    link: "https://github.com/KartikeyNamdev/voting-smart-contract.git",
+  },
+  {
+    id: 2,
+    title: "Escrow Program",
+    des: "A secure escrow smart contract ensuring trustless P2P exchanges of SPL tokens. Features time-locks and multi-signature approvals.",
+    programId: "BtVBZvuq5mERNnyhpy2MoTJQGL7rjaGE8ar6wasKEMC4",
+    network: "Devnet",
+    img: "https://fdu82zekl2zzukop.public.blob.vercel-storage.com/vault_video.mp4",
+    techStack: ["Rust", "Anchor", "Solana", "SPL Token"],
+    link: "https://github.com/KartikeyNamdev/Escrow.git",
   },
 ];
 

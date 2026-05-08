@@ -8,35 +8,41 @@ import {
   IconBrandLinkedin,
   IconBrandTwitter,
   IconFile,
+  IconFileCode,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import LazyVideo from "./LazyVideo";
 
 const dockItems = [
   {
-    title: "gmail",
-    icon: <IconBrandGmail />,
+    title: "Gmail",
+    icon: <IconBrandGmail stroke={2.5} />,
     href: "https://mail.google.com/mail/u/0/?fs=1&to=kartikeynamdev2003@gmail.com&su=SUBJECT&bcc=kartikeynamdev2003@gmail.com&tf=cm",
   },
   {
     title: "Github",
-    icon: <IconBrandGithub />,
+    icon: <IconBrandGithub stroke={2.5} />,
     href: "https://github.com/kartikeyNamdev/",
   },
   {
     title: "LinkedIn",
-    icon: <IconBrandLinkedin />,
+    icon: <IconBrandLinkedin stroke={2.5} />,
     href: "https://www.linkedin.com/in/kartikey-namdev-994a1420b/",
   },
   {
     title: "Twitter",
-    icon: <IconBrandTwitter />,
+    icon: <IconBrandTwitter stroke={2.5} />,
     href: "https://x.com/_KartikeyNamdev",
   },
   {
-    title: "Resume",
-    icon: <IconFile />,
-    href: "https://drive.google.com/file/d/1gQxV_mpIyDzGvdyXLL9zRWMk3IzioF-y/view",
+    title: "MERN Resume",
+    icon: <IconFile stroke={2.5} />,
+    href: "https://drive.google.com/file/d/1nNNmjBFJBuF6XnM3A6RU1tAjU3XRgpz1/view?usp=sharing",
+  },
+  {
+    title: "Web3 Resume",
+    icon: <IconFileCode stroke={2.5} />,
+    href: "https://drive.google.com/file/d/1b8rV8Gh1JDF3VtAaA6AhxAxJ5kTVwbMj/view?usp=sharing",
   },
 ];
 

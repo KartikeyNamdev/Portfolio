@@ -15,6 +15,7 @@ import {
   IconAward,
   IconBook,
   IconMessage,
+  IconLock,
 } from "@tabler/icons-react";
 
 /**
@@ -32,8 +33,8 @@ const getIcon = (name: string) => {
       return <IconBook className="w-4 h-4" />;
     case "achievements":
       return <IconAward className="w-4 h-4" />;
-    case "principles":
-      return <IconMessage className="w-4 h-4" />;
+    case "contracts":
+      return <IconLock className="w-4 h-4" />;
     default:
       return null;
   }
@@ -84,7 +85,7 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex max-w-[95vw] md:max-w-fit md:min-w-[60vw] lg:min-w-fit fixed z-[5000] top-4 md:top-8 inset-x-0 mx-auto px-3 md:px-10 py-2.5 md:py-4 rounded-2xl border border-slate-200/50 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] items-center justify-center space-x-1 md:space-x-8 bg-white/70 backdrop-blur-2xl",
+          "flex max-w-[95vw] md:max-w-fit md:min-w-[60vw] lg:min-w-fit fixed z-[5000] top-4 md:top-8 inset-x-0 mx-auto px-4 md:px-10 py-3 md:py-4 rounded-2xl border border-slate-200/50 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] items-center justify-start md:justify-center space-x-6 md:space-x-8 bg-white/70 backdrop-blur-2xl overflow-x-auto overflow-y-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
           className,
         )}
       >
@@ -93,11 +94,11 @@ export const FloatingNav = ({
             key={`link=${idx}`}
             href={navItem.link}
             className={cn(
-              "relative items-center flex flex-col md:flex-row space-y-0.5 md:space-y-0 md:space-x-1.5 text-slate-500 hover:text-blue-600 transition-all duration-200 px-2 md:px-0 py-1",
+              "relative flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-1.5 text-slate-500 hover:text-blue-600 transition-all duration-200 shrink-0",
             )}
           >
             <span className="block">{getIcon(navItem.name)}</span>
-            <span className="text-[9px] md:text-xs font-bold tracking-tight cursor-pointer uppercase whitespace-nowrap">
+            <span className="text-[10px] md:text-xs font-bold tracking-tight cursor-pointer uppercase whitespace-nowrap">
               {navItem.name}
             </span>
           </Link>
